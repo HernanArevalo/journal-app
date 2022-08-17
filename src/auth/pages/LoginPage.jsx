@@ -1,3 +1,4 @@
+import { Link as RouterLink } from 'react-router-dom'
 import { Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { Google } from "@mui/icons-material";
 
@@ -57,7 +58,7 @@ export const LoginPage = () => {
             <Grid container 
                   direction='row'
                   justifyContent="end">
-              <Link color='inherit' to='/auth/register'>
+              <Link component={ RouterLink } color='inherit' to='/auth/register'>
                 Crear una cuenta
               </Link>
 
