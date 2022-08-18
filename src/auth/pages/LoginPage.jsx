@@ -20,7 +20,7 @@ export const LoginPage = () => {
             <Grid item xs={12} sx={{ mt:2}}>
               <TextField label='Contraseña' 
                          type='password' 
-                         placeholder='contraseña' 
+                         placeholder='Contraseña' 
                          fullWidth />
             </Grid>
 
@@ -39,9 +39,8 @@ export const LoginPage = () => {
 
             </Grid>
 
-            <Grid container 
-                  direction='row'
-                  justifyContent="end">
+            <Grid container direction='row' justifyContent="end">
+
               <Link component={ RouterLink } color='inherit' to='/auth/register'>
                 Crear una cuenta
               </Link>
