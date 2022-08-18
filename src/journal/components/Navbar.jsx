@@ -1,7 +1,7 @@
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material'
 import { LogoutOutlined, MenuOutlined } from '@mui/icons-material'
 
-export const Navbar = ({ drawerWidth = 240 }) => {
+export const NavBar = ({ drawerWidth = 240 }) => {
   return (
     <AppBar position='fixed'
             sx={{ 
