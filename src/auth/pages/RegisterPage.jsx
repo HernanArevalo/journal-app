@@ -6,7 +6,7 @@ import { AuthLayout } from '../layout/AuthLayout';
 export const RegisterPage = () => {
   return (
 
-    <AuthLayout title='Login'>
+    <AuthLayout title='Register'>
 
         <form>
           <Grid container>
