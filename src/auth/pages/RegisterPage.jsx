@@ -12,13 +12,18 @@ export const RegisterPage = () => {
   }
 
   const formValidations = {
-    email: ['@', 'Ingrese un email correcto']
+    email: [ (value) => value.includes('@'), 'El correo debe de tener una @'],
+    password: [ (value) => value.length >= 6, 'El password debe de tener más de 6 letras.'],
+    displayName: [ (value) => value.length >= 1, 'El nombre es obligatorio.'],
   }
 
+  
 
   const { formState, displayName, email, password, onInputChange,
           isFormValid, displayNameValid, emailValid, passwordValid,
-  } = useForm( formData )
+  } = useForm( formData, formValidations )
+
+  console.log( displayNameValid )
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -30,7 +35,7 @@ export const RegisterPage = () => {
 
     <AuthLayout title='Register'>
 
-        <form onSubmit={ onSubmit }>
+        <form onSubmit={ onSubmit } >
           <Grid container>
 
             <Grid item xs={12} sx={{ mt:2}}>
