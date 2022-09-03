@@ -3,21 +3,20 @@ import { Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
 
+const formData = {
+  email: 'fernando@google.com',
+  password: '123456',
+  displayName: 'Fernando Herrera'
+}
+
+const formValidations = {
+  email: [ (value) => value.includes('@'), 'El correo debe de tener un @'],
+  password: [ (value) => value.length >= 6, 'El password debe de tener más de 6 letras.'],
+  displayName: [ (value) => value.length >= 1, 'El nombre es obligatorio.'],
+}
+
+
 export const RegisterPage = () => {
-
-  const formData = {
-    email: 'fernando@google.com',
-    password: '123456',
-    displayName: 'Fernando Herrera'
-  }
-
-  const formValidations = {
-    email: [ (value) => value.includes('@'), 'El correo debe de tener una @'],
-    password: [ (value) => value.length >= 6, 'El password debe de tener más de 6 letras.'],
-    displayName: [ (value) => value.length >= 1, 'El nombre es obligatorio.'],
-  }
-
-  
 
   const { formState, displayName, email, password, onInputChange,
           isFormValid, displayNameValid, emailValid, passwordValid,
@@ -46,7 +45,7 @@ export const RegisterPage = () => {
                          value = { displayName }
                          onChange={ onInputChange }
                          fullWidth
-                         error={ !displayNameValid }
+                         error={ displayNameValid }
                          helperText={ displayNameValid }
 
               />
