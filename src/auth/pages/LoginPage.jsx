@@ -13,12 +13,12 @@ import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth
 
 export const LoginPage = () => {
 
-  const { status } = useSelector( state => state.auth )
+  const { status, errorMessage } = useSelector( state => state.auth )
 
   const dispatch = useDispatch()
   const { email, password, onInputChange } = useForm({
-    email: 'hernanarevalo_25@hotmail.com',
-    password: '111111'
+    email: '',
+    password: ''
   })
 
   const isAuthenticating = useMemo( () => status === 'checking', [status])
@@ -68,10 +68,10 @@ export const LoginPage = () => {
 
             <Grid container spacing={ 2 } sx={{mb:2, mt: 1}}>
               <Grid item xs={ 12 }
-                    display={ true? '': 'none'}
+                    display={ !!errorMessage? '': 'none'}
               >
                 <Alert severity='error'>
-                  Message
+                  { errorMessage }
                 </Alert>
 
               </Grid>
