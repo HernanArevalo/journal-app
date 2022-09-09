@@ -7,8 +7,8 @@ import { FirebaseAuth } from '../firebase/config'
 import { login, logout } from '../store/auth'
 import { AuthRoutes } from '../auth/routes/AuthRoutes'
 
-import { JournalPage } from '../journal/pages/JournalPage'
 import { CheckingAuth } from '../ui'
+import { JournalRoutes } from '../journal/routes/JournalRoutes'
 
 
 export const AppRouter = () => {
@@ -35,20 +35,20 @@ export const AppRouter = () => {
 
   return (
     <Routes>
+
         {
           (status === 'authenticated')
-          ? <Route path="/*" element={ <JournalPage /> }/>
-          : <Route path="/auth/*" element={ <AuthRoutes /> }/>
-
+           ? <Route path="/*" element={ <JournalRoutes /> } />
+           : <Route path="/auth/*" element={ <AuthRoutes /> } />
         }
 
-        <Route path='/*' element={ <Navigate to='/auth/login' /> } />
+        <Route path='/*' element={ <Navigate to='/auth/login' />  } />
 
         {/* Login y Registro */}
-        {/* <Route path="/auth/*" element={ <AuthRoutes /> }/> */}
+        {/* <Route path="/auth/*" element={ <AuthRoutes /> } /> */}
 
         {/* JournalApp */}
-        {/* <Route path="/*" element={ <JournalPage /> }/> */}
+        {/* <Route path="/*" element={ <JournalRoutes /> } /> */}
 
     </Routes>
   )
