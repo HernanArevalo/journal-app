@@ -28,7 +28,8 @@ export const SideBar = ({ drawerWidth = 240 }) => {
 
             <Divider />
 
-            <List>
+            <List     className="animate__animated animate__fadeInLeft"
+>
                 {
                     ['Enero','Febrero','Marzo','Abril'].map(text=>(
                         <ListItem key={text} disablePadding>

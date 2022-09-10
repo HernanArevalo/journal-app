@@ -21,6 +21,8 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                 width: { sm: `calc(100% - ${drawerWidth}px)`},
                 ml: { sm: `${ drawerWidth }px` }
              }}
+             className="animate__animated animate__fadeInDown"
+
     >
         <Toolbar>
             <IconButton
