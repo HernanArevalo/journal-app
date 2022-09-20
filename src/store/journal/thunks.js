@@ -27,7 +27,6 @@ export const startNewNote = () => {
 
     }
 
-
 }
 
 export const startLoadingNotes = ( ) => {
