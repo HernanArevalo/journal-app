@@ -38,13 +38,11 @@ export const startLoadingNotes = ( ) => {
         const notes = await loadNotes( uid );
 
         dispatch( setNotes( notes ));
-
     }
 }
 
 export const startSaveNote = () => {
     return async( dispatch, getState ) =>{
-        
         dispatch( setSaving() );
 
         const { uid } = getState().auth;
@@ -58,6 +56,16 @@ export const startSaveNote = () => {
         await setDoc( docRef, noteToFireStore, {merge: true} )
 
         dispatch( noteUpdated( note ) )
+    }
+}
+
+export const startUploadingFiles = ( files = [] ) => {
+
+    return async( dispatch, getState ) => {
+        dispatch( setSaving() );
+
+        console.log(files)
+
     }
 
 
