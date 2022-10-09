@@ -1,10 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import { AddOutlined } from '@mui/icons-material';
 
 import { JournalLayout } from '../layout/JournalLayout';
+
+import { JournalLayout2 } from '../layout/JournalLayout2';
 import { NoteView, NothingSelectedView } from '../views';
 import { startNewNote } from '../../store/journal/thunks';
+import { makeStyles } from '@material-ui/core';
+import { JournalLayout3 } from '../layout/JournalLayout3';
+// import { Delete } from '@material-ui/icons';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
 
 export const JournalPage = () => {
 
@@ -15,8 +27,10 @@ export const JournalPage = () => {
     dispatch( startNewNote() );
   }
 
+  const classes = useStyles();
+
   return (
-    <JournalLayout>
+    <JournalLayout3>
       
       {
         (!!active)
@@ -24,14 +38,13 @@ export const JournalPage = () => {
           : <NothingSelectedView />
       }
 
-
       <IconButton
         onClick={ onClickNewNote }
         size='large'
         disabled={ isSaving }
         sx={{
-          color: 'white',
-          backgroundColor: 'error.main',
+          color: 'secondary',
+          bgcolor: 'error.main',
           ':hover': { backgroundColor: 'error.main', opacity: 0.9 },
           position: 'fixed',
           right: 50,
@@ -41,6 +54,7 @@ export const JournalPage = () => {
         <AddOutlined sx={{ fontSize: 30 }} />
       </IconButton>
 
-    </JournalLayout>
+
+    </JournalLayout3>
   )
 }

@@ -3,7 +3,7 @@ import { TurnedInNot } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { SideBarItem } from './';
 
-export const SideBar = ({ drawerWidth = 240 }) => {
+export const SideBar = ({ drawerWidth = 280 }) => {
 
     const { displayName } = useSelector( state => state.auth );
     const { notes } = useSelector( state => state.journal );

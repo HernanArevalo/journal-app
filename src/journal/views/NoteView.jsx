@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DeleteOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
+import { makeStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 
@@ -10,6 +11,11 @@ import { useForm } from '../../hooks/useForm';
 import { ImageGallery } from '../components'
 import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from '../../store/journal';
 
+const useStyles = makeStyles((theme) => ({
+    button: {
+      margin: theme.spacing(1),
+    },
+  }));
 
 export const NoteView = () => {
 
@@ -35,7 +41,6 @@ export const NoteView = () => {
       }
     }, [messageSaved])
     
-    
 
     const onSaveNote = () => {
         dispatch( startSaveNote() );
@@ -50,6 +55,7 @@ export const NoteView = () => {
         dispatch( startDeletingNote() );
     }
 
+    const classes = useStyles();
 
     return (
         <Grid 
@@ -90,6 +96,15 @@ export const NoteView = () => {
                     <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
                     Guardar
                 </Button>
+                <Button
+                    onClick={ onDelete }
+                    sx={{ mt: 2, pr: 4 }}
+                    color="secondary"
+                    className={classes.button}
+                >
+                    <DeleteOutline sx={{ fontSize: 30, mr: 1 }} />
+                    Borrar
+                </Button>
             </Grid>
 
             <Grid container>
@@ -116,17 +131,6 @@ export const NoteView = () => {
                     value={ body }
                     onChange={ onInputChange }
                 />
-            </Grid>
-
-            <Grid container justifyContent='end'>
-                <Button
-                    onClick={ onDelete }
-                    sx={{ mt: 2 }}
-                    color="error"
-                >
-                    <DeleteOutline />
-                    Borrar
-                </Button>
             </Grid>
 
 
