@@ -7,7 +7,7 @@ export const JournalRoutes = () => {
     <Routes>
         <Route path="./journal-app" element={ <JournalPage /> } />
 
-        <Route path="./*" element={ <Navigate to="/" /> } />
+        <Route path="./*" element={ <Navigate to="/journal-app" /> } />
     </Routes>
   )
 }
