@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Drawer, Grid, List, Toolbar, Typography } from '@mui/material'
-import AppBar from '@material-ui/core/AppBar';
-import Hidden from '@material-ui/core/Hidden';
+import {AppBar, Hidden } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import { Menu as MenuIcon } from '@mui/icons-material';
+import { Menu as MenuIcon, LogoutOutlined } from '@mui/icons-material';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { SideBarItem } from '../components';
-import { LogoutOutlined } from '@mui/icons-material';
 import { startLogout } from '../../store/auth';
 
 
