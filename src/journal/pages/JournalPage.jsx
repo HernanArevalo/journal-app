@@ -9,6 +9,7 @@ import { NoteView, NothingSelectedView } from '../views';
 import { startNewNote } from '../../store/journal/thunks';
 import { makeStyles } from '@material-ui/core';
 import { JournalLayout3 } from '../layout/JournalLayout3';
+import { JournalLayoutMUI } from '../layout/JournalLayoutMUI';
 // import { Delete } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,31 +31,31 @@ export const JournalPage = () => {
   const classes = useStyles();
 
   return (
-    <JournalLayout3>
+    <JournalLayoutMUI>
       
       {
         (!!active)
           ? <NoteView />
           : <NothingSelectedView />
       }
+      <div className='add-note-button'>
+        <IconButton
+          onClick={ onClickNewNote }
+          size='large'
+          disabled={ isSaving }
+          sx={{
+            color: 'white',
+            bgcolor: 'secondary',
+            ':hover': { backgroundColor: 'error.main', opacity: 0.9 },
 
-      <IconButton
-        onClick={ onClickNewNote }
-        size='large'
-        disabled={ isSaving }
-        sx={{
-          color: 'secondary',
-          bgcolor: 'error.main',
-          ':hover': { backgroundColor: 'error.main', opacity: 0.9 },
-          position: 'fixed',
-          right: 50,
-          bottom: 50
-        }}
-      >
-        <AddOutlined sx={{ fontSize: 30 }} />
-      </IconButton>
+          }}
+        >
+          <AddOutlined  color="white" sx={{ fontSize: 30 }} />
+        </IconButton>
+
+      </div>
 
 
-    </JournalLayout3>
+    </JournalLayoutMUI>
   )
 }

@@ -16,7 +16,7 @@ import { startLogout } from '../../store/auth';
 import { LogoutOutlined } from '@mui/icons-material';
 import { Box } from '@mui/system'
 
-const drawerWidth = 280;
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,6 +97,7 @@ export const JournalLayout2 = ({ children }, props) => {
             </Grid>
         </Toolbar>
       </AppBar>
+      // ! NAVBAR 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">

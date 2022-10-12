@@ -1,21 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { SideBarItem } from '../components';
+import { LogoutOutlined } from '@mui/icons-material';
+import { startLogout } from '../../store/auth';
+
 
 const drawerWidth = 240;
 
@@ -52,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ResponsiveDrawer(props) {
+export const JournalLayoutMUI = ( {children}, props ) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -62,51 +58,66 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const { displayName } = useSelector( state => state.auth );
+  const { notes } = useSelector( state => state.journal );
+
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <Toolbar>
+        <Typography variant='h6' noWrap component='div'>
+          { displayName }
+        </Typography>
+      </Toolbar>
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+      {
+        notes.map( note => (
+            <SideBarItem key={ note.id } { ...note } />
+        ))
+      }
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+
     </div>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
+  const dispatch = useDispatch();
+
+  const onLogout = () => {
+    dispatch( startLogout() );
+  }
+
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Responsive drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
+{/* // ! NavBar */}
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <Grid container direction='row' justifyContent='space-between' alignItems='center'>
+                <Typography variant='h6' noWrap component='div'> JournalApp </Typography>
+
+                <IconButton 
+                    color='secondary'
+                    onClick={ onLogout }
+                >
+                    <LogoutOutlined />
+                </IconButton>
+            </Grid>
+
+          </Toolbar>
+          
+        </AppBar>
+      
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
@@ -139,16 +150,16 @@ function ResponsiveDrawer(props) {
         </Hidden>
       </nav>
 
-      // ! MAIN
+
       <main className={classes.content}>
         <div className={classes.toolbar} />
-
+        {children}
       </main>
     </div>
   );
 }
 
-ResponsiveDrawer.propTypes = {
+JournalLayoutMUI.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -156,4 +167,3 @@ ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;

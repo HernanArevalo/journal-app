@@ -8,7 +8,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Menu } from '@mui/icons-material';
 
 
-export const NavBar = ({ drawerWidth = 280 }, props) => {
+export const NavBar = ({ drawerWidth = 240 }, props) => {
     
     const useStyles = makeStyles((theme) => ({
         root: {

@@ -11,3 +11,10 @@
     }
 } */
 
+.add-note-button{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: brown;
+    border-radius: 999px;
+}

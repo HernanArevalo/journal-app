@@ -21,12 +21,12 @@ export const SideBarItem = ({ title = '', body, id, date, imageUrls = [] }) => {
     },[ title ])
 
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding variant='h8'>
         <ListItemButton onClick={ onClickNote }>
             <ListItemIcon>
                 <TurnedInNot />
             </ListItemIcon>
-            <Grid container>
+            <Grid container direction="column">
                 <ListItemText primary={ newTitle } />
                 <ListItemText secondary={ body } />
             </Grid>
