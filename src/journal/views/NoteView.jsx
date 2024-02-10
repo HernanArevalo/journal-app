@@ -47,7 +47,7 @@ export const NoteView = () => {
     }
 
     const onFileInputChange = ({ target }) => {
-        if( target.files === 0 ) return;
+        if( target.files.length === 0 ) return;
         dispatch( startUploadingFiles( target.files ) );
     }
 
